@@ -1,1 +1,44 @@
-flowers_data/
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Virtual environments
+venv/
+env/
+.venv/
+.env
+
+# Data and checkpoints (large files)
+data/
+checkpoints/
+*.pth
+*.pt
+*.h5
+
+# Results (keep the directory)
+results/*.png
+results/*.json
+results/*.csv
+
+# Jupyter
+.ipynb_checkpoints/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# W&B
+wandb/
+
+# OS
+.DS_Store
+Thumbs.db

@@ -1,0 +1,74 @@
+# Project Configuration
+project:
+  name: few-shot-flower-classification
+  seed: 42
+
+# Dataset
+dataset:
+  name: oxford_flowers102
+  data_dir: data/
+  image_size: 224
+  num_workers: 4
+
+# Training - Baseline
+baseline:
+  backbone: resnet18
+  pretrained: true
+  num_epochs: 50
+  batch_size: 32
+  lr: 0.001
+  weight_decay: 0.0001
+  lr_scheduler: cosine
+  output_dir: checkpoints/baseline/
+
+# Training - Siamese
+siamese:
+  backbone: resnet18
+  pretrained: true
+  embedding_dim: 256
+  num_epochs: 50
+  batch_size: 32
+  lr: 0.0001
+  loss: contrastive
+  margin: 1.0
+  output_dir: checkpoints/siamese/
+
+# Training - Prototypical Network
+protonet:
+  backbone: resnet18
+  pretrained: true
+  embedding_dim: 256
+  num_epochs: 100
+  episodes_per_epoch: 100
+  n_way: 5
+  k_shot: 5
+  n_query: 15
+  lr: 0.001
+  lr_scheduler: step
+  lr_step_size: 20
+  lr_gamma: 0.5
+  distance: euclidean
+  output_dir: checkpoints/protonet/
+
+# Augmentation
+augmentation:
+  enabled: true
+  horizontal_flip: true
+  vertical_flip: false
+  rotation: 30
+  color_jitter: true
+  random_crop: true
+  mixup: false
+
+# Evaluation
+evaluation:
+  n_episodes: 600
+  shots: [1, 5, 10]
+  n_way: 5
+  n_query: 15
+
+# Logging
+logging:
+  use_wandb: false
+  log_interval: 10
+  save_best: true
